@@ -1,0 +1,25 @@
+{
+  "short_name": "Inventory Management",
+  "name": "Inventory Management",
+  "icons": [
+    {
+      "src": "vector-file.ico",
+      "sizes": "192x192",
+      "type": "image/x"
+    },
+    {
+      "src": "GBG.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "GBG.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

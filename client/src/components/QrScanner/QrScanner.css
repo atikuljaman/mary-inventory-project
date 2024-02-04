@@ -1,0 +1,47 @@
+.parent{
+  min-height: 100vh;
+}
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 50px;
+}
+.scan-btn {
+    align-self: center;
+    width: 200px;
+    height: 200px;
+    background-color:#0A7BC2;
+    border: none;
+    outline: none;
+    border-radius: 50%;
+    
+    color:#CE2740;
+    transition: all .5s ease;
+    z-index: 100;
+}
+.scanner-window {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .camera-container {
+    width: 340px;
+    max-height: 80vh;
+  }
+  
+  .camera-preview {
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+@media screen and (max-width: 767px) {
+  .parent{
+    margin-top: 15px;
+  }
+}

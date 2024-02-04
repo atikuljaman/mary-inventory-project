@@ -1,0 +1,48 @@
+.messages-output {
+    height: 80vh;
+    border: 1px solid gray;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+.senderName {
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+}
+
+.messageContainer {
+    max-width: 20%;
+    background-color: cornflowerblue;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 5px;
+}
+
+.messageText {
+    color: black;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+}
+
+.messageTime {
+    color: white;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+}
+
+.ownMessage {
+    align-self: flex-end;
+    background-color: lightblue;
+}
+
+@media only screen and (max-width: 480px) {
+    .messageContainer {
+        max-width: 60%;
+    }
+}

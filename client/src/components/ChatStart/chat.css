@@ -1,0 +1,17 @@
+.chat_starter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+}
+
+.chat_starter_content {
+    padding: 50px;
+    background-color:#88cdf8 ;
+    border-radius: 30px;
+   
+}
+
+.chat_starter_content h1 {
+    color: rgb(57, 55, 55);
+}

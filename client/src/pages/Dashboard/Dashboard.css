@@ -1,0 +1,43 @@
+.dashboard{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  
+}
+
+.loader circle {
+    fill: none;
+    stroke: #abbac4;
+    stroke-width: 6;
+    stroke-linecap: round;
+    animation: loader 1.5s ease-in-out infinite;
+}
+
+
+.yourInfo{
+    text-align: center;
+    margin-top: 10px;
+    color:#2E3F4D;
+}
+@media only screen and (max-width: 800px) {
+    .loader {
+      /* Styles for smaller screens */
+      top: 40%;
+    }
+  }
+  
+  @media only screen and (max-width: 480px) {
+    .loader {
+      /* Styles for even smaller screens */
+      top: 30%;
+    }
+  }
