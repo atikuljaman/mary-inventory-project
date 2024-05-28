@@ -1,12 +1,34 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap"); */
+
 * {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   padding: 0;
   margin: 0;
 }
 
 body {
   overflow-x: hidden;
+  background-color: #f6f7f9;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
 }
 
 .main_container {
@@ -16,16 +38,37 @@ body {
 }
 
 main {
-  margin: 0;
+  /* margin: 0;
   width: 100%;
-  min-height: 100vh;
+  min-height: 100vh; */
+  width: calc(100% - 350px);
+  margin-left: auto;
+  margin-top: 100px;
+  padding: 25px 40px 25px 25px;
+}
+
+main.active-main {
+  /* margin: 0;
+  width: 100%;
+  min-height: 100vh; */
+  width: 100%;
+  margin-top: 100px;
+}
+
+.yourInfo {
+  font-size: 1.5rem;
+  color: #263440;
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-family: Georgia, serif;
+  text-transform: uppercase;
 }
 
 @media screen and (max-width: 768px) {
   .main_container {
     flex-direction: column;
   }
-  .install-btn{
+  .install-btn {
     position: "fixed !important";
   }
 }
@@ -50,7 +93,7 @@ main {
   transition: transform 0.3s ease;
 }
 
-.install-btn:hover{
+.install-btn:hover {
   background-color: red;
   border-color: red;
 }
@@ -67,10 +110,10 @@ main {
   transform: rotate(-45deg) translate(7px, -6px);
 }
 
-footer{
+footer {
   width: 60%;
   margin: auto;
 }
-footer p{
+footer p {
   font-size: large;
 }

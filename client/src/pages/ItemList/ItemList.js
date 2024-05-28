@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import "./ItemList.css";
 
 const ItemList = () => {
   const navigate = useNavigate();
@@ -43,8 +44,9 @@ const ItemList = () => {
 
     fetchUserData();
   }, []);
+
   const handleSearch = (e) => {
-    const searchTerm = e.target.value;
+    const searchTerm = e.target.value.toLowerCase();
 
     if (searchTerm === "") {
       // If search bar is empty, fetch all items
@@ -53,25 +55,29 @@ const ItemList = () => {
     } else {
       // Filter items by name
       const filteredItems = items.filter((item) =>
-        item.name.includes(searchTerm)
+        item.name.toLowerCase().includes(searchTerm)
       );
+
       setItems(filteredItems);
       setSearch(searchTerm);
     }
   };
+
+  console.log(items);
+
   if (loading) {
     return <h1>Loading...</h1>;
   }
   return (
     <div className="mt-5 mt-md-0">
-      <h2>Item's Scanned </h2>
+      <h2 className="yourInfo">Item's Scanned </h2>
       {userRole === "admin" && (
         <button className="update_btn" onClick={() => navigate("/editItems")}>
           Edit Stock
         </button>
       )}
 
-      <div style={{ margin: 20 }} className="search_bar">
+      <div className="search_bar">
         <input
           value={search}
           onChange={handleSearch}
@@ -81,88 +87,85 @@ const ItemList = () => {
       </div>
 
       <div>
-        <h1>Items without cases</h1>
-        <Table
-          bordered
-          striped
-          align="center"
-          style={{ marginTop: "50px" }}
-          width="60%"
-          border="1"
-        >
-          <thead>
-            <tr>
-              <th>Sr.No</th>
-              <th>Item Name</th>
-              <th>Available Items</th>
-              <th>Total Items</th>
-            </tr>
-          </thead>
-          <tbody>
-            {items.map((item, index) => (
-              <tr key={item._id}>
-                <td align="center">{index + 1}</td>
-                <td align="center">{item.name}</td>
-                {item.items_left === 0 ? (
-                  <td style={{ backgroundColor: "red" }} align="center">
-                    {" "}
-                    {item.items_left}
-                  </td>
-                ) : item.items_left < 5 ? (
-                  <td style={{ backgroundColor: "yellow" }} align="center">
-                    {" "}
-                    {item.items_left}
-                  </td>
-                ) : (
-                  <td align="center"> {item.items_left}</td>
-                )}
-                <td align="center"> {item.totalItems}</td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
+        <div className="item-list-table-wrapper">
+          <h2 className="yourInfo">Items without cases</h2>
 
-        <h1>Items with cases</h1>
+          <div className="item-list-table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Sr.No</th>
+                  <th>Item Name</th>
+                  <th>Available Items</th>
+                  <th>Total Items</th>
+                </tr>
+              </thead>
+              <tbody>
+                {items.map((item, index) => (
+                  <tr key={item._id}>
+                    <td align="center">{index + 1}</td>
+                    <td align="center">{item.name}</td>
+                    {item.items_left === 0 ? (
+                      <td style={{ backgroundColor: "red" }} align="center">
+                        {" "}
+                        {item.items_left}
+                      </td>
+                    ) : item.items_left < 5 ? (
+                      <td style={{ backgroundColor: "yellow" }} align="center">
+                        {" "}
+                        {item.items_left}
+                      </td>
+                    ) : (
+                      <td align="center"> {item.items_left}</td>
+                    )}
+                    <td align="center"> {item.totalItems}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
 
-        <Table
-          bordered
-          striped
-          align="center"
-          style={{ marginTop: "50px" }}
-          width="60%"
-          border="1"
-        >
-          <thead>
-            <tr>
-              <th>Sr.No</th>
-              <th>Item Name</th>
-              <th>Available Cases</th>
-              <th>Available Boxes</th>
-            </tr>
-          </thead>
-          <tbody>
-            {casesItems.map((item, index) => (
-              <tr key={item._id}>
-                <td align="center">{index + 1}</td>
-                <td align="center">{item.name}</td>
-                {item.items_left === 0 ? (
-                  <td style={{ backgroundColor: "red" }} align="center">
-                    {" "}
-                    {item.cases}
-                  </td>
-                ) : item.cases < 5 ? (
-                  <td style={{ backgroundColor: "yellow" }} align="center">
-                    {" "}
-                    {item.cases}
-                  </td>
-                ) : (
-                  <td align="center"> {item.cases}</td>
-                )}
-                <td align="center"> {item.boxes}</td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
+        <div className="item-list-table-wrapper">
+          <h2 className="yourInfo">Items with cases</h2>
+
+          <div className="item-list-table-container item-list-table-container-2">
+            <table>
+              <thead>
+                <tr>
+                  <th>Sr.No</th>
+                  <th>Item Name</th>
+                  <th>Available Cases</th>
+                  <th>Available Boxes</th>
+                  <th>Available Items</th>
+                </tr>
+              </thead>
+              <tbody>
+                {casesItems.map((item, index) => (
+                  <tr key={item._id}>
+                    <td align="center">{index + 1}</td>
+                    <td align="center">{item.name}</td>
+                    {item.items_left === 0 ? (
+                      <td style={{ backgroundColor: "red" }} align="center">
+                        {" "}
+                        {item.cases}
+                      </td>
+                    ) : item.cases < 5 ? (
+                      <td style={{ backgroundColor: "yellow" }} align="center">
+                        {" "}
+                        {item.cases}
+                      </td>
+                    ) : (
+                      <td align="center"> {item.cases}</td>
+                    )}
+                    <td align="center"> {item.boxes}</td>
+                    <td align="center"> {item.items_left}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   );

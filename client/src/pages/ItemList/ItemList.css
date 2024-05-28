@@ -1,0 +1,79 @@
+.search_bar {
+  width: 100%;
+  height: 40px;
+  margin: 40px 0;
+}
+
+.search_bar input {
+  width: 100%;
+  max-width: 100%;
+  height: 40px;
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid #e6e6e6;
+}
+
+.item-list-table-wrapper {
+  background-color: white;
+  border: 1px solid #e6e6e6;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 40px;
+}
+
+.item-list-table-container {
+  width: 100%;
+  height: 600px;
+  border-radius: 16px;
+  border: 1px solid #e6e6e6;
+  margin: 40px 0 0 0;
+  background-color: white;
+  overflow-y: auto;
+}
+
+.item-list-table-container.item-list-table-container-2 {
+  height: 456px;
+}
+
+.item-list-table-container table {
+  width: 100%;
+  border: 1px solid transparent;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.item-list-table-container th,
+td {
+  border: 1px solid #e6e6e6;
+  padding: 20px;
+  text-align: start;
+  height: 56px; /* Apply height to th and td for uniformity */
+  max-height: 56px;
+  overflow: hidden; /* Ensures content overflow doesn't affect height */
+}
+
+.item-list-table-container th {
+  border-top: 0;
+  background-color: #f2f4f7;
+  height: 56px;
+  max-height: 56px;
+  color: #667085;
+  font-weight: 500;
+}
+
+.item-list-table-container td {
+  height: 40px;
+  max-height: 40px;
+}
+
+.item-list-table-container th:first-child {
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+}
+
+.item-list-table-container td:first-child {
+  border-left: 0;
+  border-right: 0;
+  font-weight: 500;
+}

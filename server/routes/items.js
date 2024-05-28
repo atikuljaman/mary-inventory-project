@@ -44,13 +44,17 @@ router.post("/sold", async (req, res) => {
     if (type == "case") {
       const item = await Item.findOneAndUpdate(
         { name },
-        { $inc: { cases: -1, boxes: -10 }, firstName, lastName }
+        {
+          $inc: { cases: -1, items_left: -100, boxes: -10 },
+          firstName,
+          lastName,
+        }
       );
       return res.status(201).json({ status: "Successful", data: item });
     } else if (type == "box") {
       const item = await Item.findOneAndUpdate(
         { name },
-        { $inc: { boxes: -1 }, firstName, lastName }
+        { $inc: { boxes: -1, items_left: -10 }, firstName, lastName }
       );
       return res.status(201).json({ status: "Successful", data: item });
     }

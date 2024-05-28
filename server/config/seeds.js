@@ -12,24 +12,24 @@ const bcrypt = require("bcryptjs");
 
   // Create a new user
   const user = await User.create({
-    firstName: "Gregory",
-    lastName: "Kaplan",
-    email: "wilshiredentist@gmail.com",
-    password: "greg0713kap",
-    username: "Dr.Gregory",
+    firstName: "mary",
+    lastName: "lefebvre",
+    email: "wilshire@gmail.com",
+    password: "mary1234567890",
+    username: "mary",
     user_type: "admin",
     image:
       "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80",
   });
   //const user2 = await User.create({
-   // firstName: "test",
-    //lastName: "test",
-   // email: "test@example.com",
-    //password: "password123",
-    //username: "test",
-   // user_type: "client",
-    //image:
-     // "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
+  // firstName: "test",
+  //lastName: "test",
+  // email: "test@example.com",
+  //password: "password123",
+  //username: "test",
+  // user_type: "client",
+  //image:
+  // "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
   //});
 
   // Create some items
@@ -161,6 +161,8 @@ const bcrypt = require("bcryptjs");
     {
       name: "Multifold Towels",
       cases: 3,
+      items_left: 300,
+      totalItems: 300,
       boxes: 30,
     },
 
@@ -234,21 +236,29 @@ const bcrypt = require("bcryptjs");
     {
       name: "Nitrile Gloves (Small)",
       boxes: 30,
+      items_left: 300,
+      totalItems: 300,
       cases: 3,
     },
     {
       name: "Nitrile Gloves (Medium)",
       boxes: 30,
       cases: 3,
+      items_left: 300,
+      totalItems: 300,
     },
     {
       name: "Nitrile Gloves (Large)",
       boxes: 30,
       cases: 3,
+      items_left: 300,
+      totalItems: 300,
     },
     {
       name: "Nitrile Gloves (X Small)",
       boxes: 30,
+      items_left: 300,
+      totalItems: 300,
 
       cases: 3,
     },
@@ -256,6 +266,8 @@ const bcrypt = require("bcryptjs");
       name: "3x10 Sterilization Pouches",
       boxes: 30,
       cases: 3,
+      items_left: 300,
+      totalItems: 300,
     },
     {
       name: "Plastic Cups",

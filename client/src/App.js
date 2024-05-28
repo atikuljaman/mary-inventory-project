@@ -1,9 +1,11 @@
 import { Dashboard, Login, Signup } from "./pages";
 import { Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Profile from "./pages/Profile/Profile";
-import Navbar from "./components/Navbar.js/Navbar";
+// import Navbar from "./components/Navbar.js/Navbar";
+import Navbar from "./components/Navbar.js/NavbarTwo";
+import Topbar from "./components/Topbar/Topbar";
 import QrScanner from "./components/QrScanner/QrScanner";
 import "react-toastify/dist/ReactToastify.css";
 import ItemList from "./pages/ItemList/ItemList";
@@ -11,10 +13,13 @@ import EditItem from "./pages/EditItems/EditItem";
 import Chat from "./pages/Chat/Chat";
 import { Button } from "react-bootstrap";
 import MessageForm from "./components/MessageForm/MessageForm";
+import Message from "./components/MessageForm/Message";
 import LandingPage from "./pages/LandingPage/LandingPage";
 import ChatStart from "./components/ChatStart/ChatStart";
 import axios from "axios";
 import Footer from "./components/Footer/Footer";
+import { AuthContext } from "./context/authContext";
+import { ChatContextProvider } from "./context/chatContext";
 
 const App = () => {
   const [deferredPrompt, setDeferredPrompt] = useState(null);
@@ -22,6 +27,9 @@ const App = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const user_id = localStorage.getItem("user_id");
   const [openMenu, setOpenMenu] = useState(false);
+
+  const { user } = useContext(AuthContext);
+
   const getAdmin = async () => {
     const data = await axios.get("/api/users/getAdmin");
     if (data.data.data[0]._id === user_id) {
@@ -50,25 +58,42 @@ const App = () => {
     }
   };
 
-  return (
-    <>
-    <Button
-          style={
-            {
-              position: "absolute",
-              zIndex: 1,
-              top: "10px",
-              right: "25px",
-            }
-          }
-          className="install-btn"
-          onClick={handleInstallClick}
-        >
-          Install
-        </Button>
+  const chats = [
+    {
+      id: "group-12345",
+      name: "General Group",
+      message: "Last message in General",
+      time: "1h",
+      image: "https://example.com/image.jpg",
+    },
+    {
+      id: "user-1",
+      name: "John Doe",
+      message: "Hey, how are you?",
+      time: "20m",
+      image: "https://example.com/image.jpg",
+    },
+    // Add more chats as needed
+  ];
 
-        
-        {/* {loggedIn && (
+  return (
+    <ChatContextProvider user={user}>
+      {/* <Button
+        style={{
+          position: "absolute",
+          zIndex: 1,
+          top: "10px",
+          right: "25px",
+        }}
+        className="install-btn"
+        onClick={handleInstallClick}
+      >
+        Install
+      </Button> */}
+
+      <Topbar loggedIn={user} />
+
+      {/* {loggedIn && (
           <Button
             style={
               {
@@ -89,7 +114,7 @@ const App = () => {
           </Button>
         )} */}
       <div className="main_container">
-        {loggedIn && (
+        {user && (
           <Navbar
             setLoggedIn={setLoggedIn}
             openMenu={openMenu}
@@ -97,52 +122,42 @@ const App = () => {
           />
         )}
 
-        <main>
+        <main className={!user && "active-main"}>
           <Routes>
             <Route
               path="/"
               element={
-                loggedIn ? (
-                  <Navigate replace to={"/dashboard"} />
-                ) : (
-                  <LandingPage />
-                )
+                user ? <Navigate replace to={"/dashboard"} /> : <LandingPage />
               }
             />
             <Route
               path="/dashboard"
               element={
-                loggedIn ? <Dashboard /> : <Navigate replace to={"/login"} />
+                user ? <Dashboard /> : <Navigate replace to={"/login"} />
               }
             />
             <Route
               path="/employee"
-              element={
-                loggedIn ? <Profile /> : <Navigate replace to={"/login"} />
-              }
+              element={user ? <Profile /> : <Navigate replace to={"/login"} />}
             />
             <Route
               path="/scan"
               element={
-                loggedIn ? <QrScanner /> : <Navigate replace to={"/login"} />
+                user ? <QrScanner /> : <Navigate replace to={"/login"} />
               }
             />
             <Route
               path="/itemList"
-              element={
-                loggedIn ? <ItemList /> : <Navigate replace to={"/login"} />
-              }
+              element={user ? <ItemList /> : <Navigate replace to={"/login"} />}
             />
             <Route
               path="/editItems"
-              element={
-                loggedIn ? <EditItem /> : <Navigate replace to={"/login"} />
-              }
+              element={user ? <EditItem /> : <Navigate replace to={"/login"} />}
             />
             <Route
               path="/chat"
               element={
-                loggedIn ? (
+                user ? (
                   <Chat isAdmin={isAdmin} setIsAdmin={setIsAdmin} />
                 ) : (
                   <Navigate replace to={"/login"} />
@@ -158,21 +173,33 @@ const App = () => {
               <Route
                 path="start"
                 element={
-                  <MessageForm isAdmin={isAdmin} setIsAdmin={setIsAdmin} />
+                  // <MessageForm isAdmin={isAdmin} setIsAdmin={setIsAdmin} />
+                  <Message
+                    isAdmin={isAdmin}
+                    setIsAdmin={setIsAdmin}
+                    chats={chats}
+                  />
                 }
               />
             </Route>
 
             <Route
               path="/login"
-              element={<Login setLoggedIn={setLoggedIn} />}
+              element={
+                user ? <Navigate replace to={"/dashboard"} /> : <Login />
+              }
             />
-            <Route path="/register" element={<Signup />} />
+            <Route
+              path="/register"
+              element={
+                user ? <Navigate replace to={"/dashboard"} /> : <Signup />
+              }
+            />
           </Routes>
-          <Footer />
+          {/* <Footer /> */}
         </main>
       </div>
-    </>
+    </ChatContextProvider>
   );
 };
 

@@ -1,0 +1,94 @@
+.message-wrapper {
+  display: grid;
+  grid-template-columns: 24% 50% 24%;
+  grid-gap: 24px;
+  max-width: 100%;
+}
+
+.message-wrapper-left {
+  width: 100%;
+  height: calc(100vh - 150px);
+  background-color: white;
+  border-radius: 16px;
+  border: 1px solid #e6e6e6;
+  padding: 20px 0 0 0;
+}
+
+.message-wrapper-center {
+  width: 100%;
+  height: calc(100vh - 150px);
+  background-color: white;
+  border-radius: 16px;
+  border: 1px solid #e6e6e6;
+}
+
+.message-wrapper-right {
+  width: 100%;
+  height: calc(100vh - 150px);
+  background-color: white;
+  border-radius: 16px;
+  border: 1px solid #e6e6e6;
+  /* padding: 20px; */
+}
+
+.conversation-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 20px;
+  width: 100%;
+  transition: background-color 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.conversation-item:hover {
+  background-color: #f6f7f9;
+}
+
+.conversation-item .conversation-item-image {
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+  min-height: 50px;
+  border-radius: 50%;
+  /* background: url("https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg"); */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.this-user-online {
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  min-height: 16px;
+  border-radius: 50%;
+  background-color: #1dbf73;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border: 3px solid white;
+}
+
+.this-user-offline {
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  min-height: 16px;
+  border-radius: 50%;
+  background-color: gray;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border: 3px solid white;
+}
+
+.conversation-item h5 {
+  color: #101828;
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

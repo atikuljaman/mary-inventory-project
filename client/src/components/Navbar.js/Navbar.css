@@ -12,16 +12,16 @@
   /* box-shadow:0 0 10px rgba(0, 0, 0, 0.5) ; */
   box-shadow: 10px 0 10px -5px rgba(0, 0, 0, 0.2);
 }
-.sidebar-user-role{
+.sidebar-user-role {
   margin-bottom: 1rem !important;
 }
 @media screen and (max-width: 768px) {
-  .sidebar{
+  .sidebar {
     position: fixed;
     height: auto;
     flex-direction: row;
     max-width: 100%;
-    background-color: #B1DFFB;
+    background-color: #b1dffb;
     z-index: 100;
   }
 }
@@ -75,7 +75,7 @@ aside nav a:hover {
 .hidden {
   display: none !important;
 }
-.sidebar-logout-btn{
+.sidebar-logout-btn {
   margin-top: 5px;
 }
 .hamburger {

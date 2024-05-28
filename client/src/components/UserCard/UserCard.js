@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
+import { IoMailOutline } from "react-icons/io5";
+import { IoMdLogIn } from "react-icons/io";
+import { FaRegUser } from "react-icons/fa";
 import "./UserCard.css";
 import axios from "axios";
 
@@ -51,13 +54,11 @@ const UserCard = ({
   };
 
   useEffect(() => {
-      document.body.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = "auto";
     };
   }, []);
-
-
 
   return (
     <div className="user-card-container">
@@ -70,10 +71,16 @@ const UserCard = ({
             <h3>
               {firstName} {lastName}
             </h3>
-            <p>{email}</p>
-            <p>{employer}</p>
+            <p>
+              <IoMailOutline className="icon" /> {email}
+            </p>
+            <p>
+              <FaRegUser className="icon" /> {employer}
+            </p>
             <p>{status}</p>
-            <p>Last login: {lastLogin}</p>
+            <p>
+              <IoMdLogIn className="icon" /> Last login: {lastLogin}
+            </p>
           </div>
           {employer === "Employer" && (
             <>
@@ -82,7 +89,8 @@ const UserCard = ({
                 <input type="file" id="upload" class="file-input" />
               </label> */}
               <div className="img-upload">
-                <input onChange={handleImage} 
+                <input
+                  onChange={handleImage}
                   type="file"
                   className="custom-file-input"
                   id="uploadInput"
