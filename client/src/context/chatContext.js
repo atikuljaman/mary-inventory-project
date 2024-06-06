@@ -3,6 +3,7 @@ import { baseUrl, getRequest, postRequest } from "../utils/services";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import io from "socket.io-client";
+import { useFetchLatestMessage } from "../hooks/useFetchLatestMessage";
 
 export const ChatContext = createContext();
 
@@ -19,9 +20,6 @@ export const ChatContextProvider = ({ children, user }) => {
   const [notifications, setNotifications] = useState([]);
   const [allUsers, setAllUsers] = useState([]);
   const navigate = useNavigate();
-
-  // console.log("online users", onlineUsers);
-  // console.log("Notifications", notifications);
 
   useEffect(() => {
     const newSocket = io("http://localhost:8080");
@@ -59,9 +57,21 @@ export const ChatContextProvider = ({ children, user }) => {
     if (socket === null) return;
 
     socket.on("getMessage", (response) => {
+      // if (currentChat?._id !== response?.chatId) return;
+
+      // setMessages((prevMessages) => [...prevMessages, response]);
+
       if (currentChat?._id !== response?.chatId) return;
 
       setMessages((prevMessages) => [...prevMessages, response]);
+
+      // setUserChats((prevChats) =>
+      //   prevChats.map((chat) =>
+      //     chat._id === response.chatId
+      //       ? { ...chat, latestMessage: response }
+      //       : chat
+      //   )
+      // );
     });
 
     socket.on("getNotification", (response) => {
@@ -86,7 +96,7 @@ export const ChatContextProvider = ({ children, user }) => {
       socket.off("getMessage");
       socket.off("getNotification");
     };
-  }, [socket, currentChat]);
+  }, [socket, currentChat, userChats]);
 
   useEffect(() => {
     const getUsers = async () => {
@@ -188,18 +198,30 @@ export const ChatContextProvider = ({ children, user }) => {
     []
   );
 
-  const createChat = useCallback(async (firstId, secondId) => {
-    const response = await postRequest(`${baseUrl}/chats/chat/start`, {
-      firstId,
-      secondId,
-    });
+  const createChat = useCallback(
+    async (firstId, secondId) => {
+      const response = await postRequest(`${baseUrl}/chats/chat/start`, {
+        firstId,
+        secondId,
+      });
 
-    if (response.error) {
-      console.log("Failed to create chat", response);
-    }
+      if (response.error) {
+        console.log("Failed to create chat", response);
+      }
 
-    setUserChats((prevChats) => [...prevChats, response]);
-  });
+      // setUserChats((prevChats) => [...prevChats, response]);
+
+      // Add the new chat at the beginning of userChats array
+      setUserChats((prevChats) => [response, ...prevChats]);
+
+      // Update the current chat to the newly created one
+      updateCurrentChat(response);
+
+      // Navigate to the chat/start path
+      navigate("/chat/start");
+    },
+    [updateCurrentChat]
+  );
 
   const markAllNotificationsAsRead = useCallback((notifications) => {
     const markedNotifications = notifications.map((item) => {

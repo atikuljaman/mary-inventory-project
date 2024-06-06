@@ -1,68 +1,181 @@
-.signup-container {
-    max-width: 500px;
-    margin: 0 auto;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 50px;
-    background-color:#D6F1FF;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
-.form-group {
-    margin-bottom: 20px;
+.auth-container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  width: 60%;
+  background-color: white;
+  margin: 0 auto;
+  border-radius: 10px;
 }
 
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+.auth-container .auth-left {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px 0 0 10px;
+  padding: 30px;
+  gap: 20px;
+  border: 1px solid #e6e6e6;
 }
 
-input[type='text'],
-input[type='email'],
-input[type='password'],
+.auth-container .auth-left.login-left {
+  justify-content: center;
+}
+
+.auth-container .auth-left-header p {
+  font-size: 14px;
+  color: #667085;
+  margin-top: 5px;
+}
+
+.auth-container .auth-left h2 {
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.auth-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.auth-container .input-box-wrapper {
+  display: flex;
+  gap: 20px;
+}
+
+.auth-container .input-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.auth-container label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #101828;
+}
+
+.auth-container input,
 select {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  background-color: white;
+  width: 100%;
+  max-width: 100%;
+  font-size: 14px;
+}
+
+.auth-container input::placeholder {
+  font-size: 13px;
+}
+
+.auth-container button {
+  height: 40px;
+  border: 0;
+  border-radius: 5px;
+  outline: none;
+  background-color: #101828;
+  width: 100%;
+  max-width: 100%;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+}
+
+.avatar-input-box {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.avatar-input-box .img-loader {
+  padding: 6px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.avatar-label {
+  cursor: pointer;
+  width: 100%;
+}
+
+.avatar-preview {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.avatar-placeholder {
+  width: 100%;
+  padding: 6px 10px;
+  border: 2px dashed #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 13px;
+  color: #aaa;
+  font-weight: 500;
+}
+
+.auth-container .redirect-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.auth-container .redirect-link p {
+  color: #101828;
+  font-weight: 600;
+}
+
+.auth-container .redirect-link a {
+  text-decoration: underline;
+}
+
+.auth-container .auth-right {
+  display: flex;
+  border: 1px solid #e6e6e6;
+  background-color: white;
+  padding: 30px;
+  border-radius: 0px 10px 10px 0px;
+  border-left: 0;
+}
+
+/* MEDIA QUERIES FOR RESPONSIVE DESIGN */
+
+@media (max-width: 768px) {
+  .auth-container {
+    display: flex;
     width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: none;
-    background-color: #c9e2ef;
-}
+  }
 
-input[type='file'] {
-    display: block;
-    margin-top: 5px;
-}
+  .auth-container .input-box-wrapper {
+    flex-direction: column;
+  }
 
-button[type='submit'] {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin-top: 20px;
-    font-size: 16px;
-    font-weight: bold;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
+  .auth-container .redirect-link {
+    flex-direction: column;
+  }
 
-button[type='submit']:hover {
-    background-color: #0069d9;
-    color:#2E3F4D;
-}
+  .auth-container .redirect-link p,
+  .auth-container .redirect-link a {
+    font-size: 14px;
+  }
 
-.error {
-    color: red;
-    margin-bottom: 10px;
-}
-.text{
-    font-weight: 700;
-    font-size:large;
-    text-decoration: none;
-    text-align: center;
-    color: #2889ef;
+  .auth-container .auth-right {
+    display: none;
+  }
 }

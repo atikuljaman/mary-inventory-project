@@ -7,6 +7,7 @@ export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isSideBarOpen, setIsSideBarOpen] = useState(false);
   const [registerInfo, setRegisterInfo] = useState({
     firstName: "",
     lastName: "",
@@ -17,10 +18,18 @@ export const AuthContextProvider = ({ children }) => {
     user_type: "Employee",
     image: "",
   });
+
   const [loginInfo, setLoginInfo] = useState({
     email: "",
     password: "",
   });
+
+  const [adminUpdatedImage, setAdminUpdatedImage] = useState(""); // State to store Navbar image
+
+  // Callback function to update Navbar image
+  const updateAdminImage = (newImage) => {
+    setAdminUpdatedImage(newImage);
+  };
 
   useEffect(() => {
     const user = localStorage.getItem("User");
@@ -84,6 +93,10 @@ export const AuthContextProvider = ({ children }) => {
     setUser(null);
   }, []);
 
+  const toggleSideBar = useCallback(() => {
+    setIsSideBarOpen(!isSideBarOpen);
+  }, [isSideBarOpen]);
+
   return (
     <AuthContext.Provider
       value={{
@@ -97,6 +110,10 @@ export const AuthContextProvider = ({ children }) => {
         logoutUser,
         error,
         isLoading,
+        toggleSideBar,
+        isSideBarOpen,
+        updateAdminImage,
+        adminUpdatedImage,
       }}
     >
       {children}

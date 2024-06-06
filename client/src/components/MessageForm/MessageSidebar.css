@@ -8,6 +8,7 @@
   height: 45px;
   border: 1px solid #e6e6e6;
   margin: 0 20px 20px 20px;
+  max-height: 100%;
 }
 
 .message-sidebar-container .message-search-bar input {
@@ -115,4 +116,118 @@
   color: white;
   font-size: 12px;
   font-weight: 600;
+}
+
+/* --------------------------- */
+.loading-conversations {
+  height: calc(100vh - 235px);
+  overflow-y: auto;
+}
+
+.loading-conversation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 20px 20px 20px;
+  animation: loading-sequence 3s ease-in-out infinite;
+}
+
+@keyframes loading-sequence {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+.loading-conversation-item-image {
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+  min-height: 50px;
+  border-radius: 50%;
+  background-color: #e6e6e6;
+}
+
+.loading-conversation-info {
+  width: 100%;
+}
+
+.loading-conversation-info h5,
+.loading-conversation-info p {
+  width: 90%;
+  height: 20px;
+  background-color: #e6e6e6;
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
+.loading-conversation-info p {
+  width: 60%;
+}
+
+/* MEDIA QUERIES FOR RESPONSIVE DESIGN */
+@media screen and (max-width: 768px) {
+  .message-sidebar-container .message-search-bar {
+    height: 35px;
+  }
+
+  .message-sidebar-container .message-search-bar input::placeholder {
+    font-size: 14px;
+  }
+
+  .message-sidebar-container .message-search-bar .icon {
+    font-size: 20px;
+  }
+
+  .message-sidebar-container .conversation-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 20px;
+    width: 100%;
+    transition: background-color 0.2s ease-in-out;
+    cursor: pointer;
+  }
+
+  .message-sidebar-container .conversation-item:hover {
+    background-color: #f6f7f9;
+  }
+
+  .message-sidebar-container .conversation-item .conversation-item-image {
+    width: 43px;
+    height: 43px;
+    min-width: 43px;
+    min-height: 43px;
+  }
+
+  .message-sidebar-container .conversation-item .this-user-online {
+    width: 12px;
+    height: 12px;
+    min-width: 12px;
+    min-height: 12px;
+  }
+
+  .message-sidebar-container .conversation-item h5 {
+    font-size: 14px;
+  }
+
+  .message-sidebar-container .conversation-item h5 .message-time {
+    font-size: 12px;
+  }
+
+  .message-sidebar-container .conversation-item p {
+    font-size: 13px;
+  }
+
+  .message-sidebar-container .conversation-item .this-user-notification {
+    width: 17px;
+    height: 17px;
+    font-size: 11px;
+  }
 }

@@ -25,36 +25,79 @@ const App = () => {
   const [deferredPrompt, setDeferredPrompt] = useState(null);
   const [loggedIn, setLoggedIn] = useState(localStorage.getItem("user_id"));
   const [isAdmin, setIsAdmin] = useState(false);
-  const user_id = localStorage.getItem("user_id");
+  const userLocalStorage = JSON.parse(localStorage.getItem("User"));
   const [openMenu, setOpenMenu] = useState(false);
 
   const { user } = useContext(AuthContext);
 
-  const getAdmin = async () => {
-    const data = await axios.get("/api/users/getAdmin");
-    if (data.data.data[0]._id === user_id) {
-      setIsAdmin(true);
-    }
-  };
+  // const getAdmin = async () => {
+  //   const data = await axios.get("/api/users/getAdmin");
+  //   if (data.data.data[0]._id === userLocalStorage?._id) {
+  //     setIsAdmin(true);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   window.addEventListener("beforeinstallprompt", (event) => {
+  //     event.preventDefault(); // Prevent the default prompt from showing
+  //     getAdmin();
+  //     // Store the deferred prompt for later use
+  //     setDeferredPrompt(event);
+  //   });
+  // }, [deferredPrompt]);
+
   useEffect(() => {
-    window.addEventListener("beforeinstallprompt", (event) => {
+    const handleBeforeInstallPrompt = (event) => {
+      console.log("beforeinstallprompt event fired");
       event.preventDefault(); // Prevent the default prompt from showing
       getAdmin();
-      // Store the deferred prompt for later use
-      setDeferredPrompt(event);
-    });
+      setDeferredPrompt(event); // Store the deferred prompt for later use
+    };
+
+    window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+
+    // Check if the event listener is added
+    console.log("Added event listener for beforeinstallprompt");
+
+    return () => {
+      window.removeEventListener(
+        "beforeinstallprompt",
+        handleBeforeInstallPrompt
+      );
+    };
+  }, []);
+
+  useEffect(() => {
+    console.log("DEFERRED PROMPT", deferredPrompt);
   }, [deferredPrompt]);
+
+  // const handleInstallClick = () => {
+  //   if (deferredPrompt) {
+  //     // Show the install prompt
+  //     deferredPrompt.prompt();
+  //     console.log("first");
+  //     // Wait for the user to respond to the prompt
+  //     deferredPrompt.userChoice.then((choiceResult) => {
+  //       // Reset the deferred prompt so it can be used again
+  //       setDeferredPrompt(null);
+  //     });
+  //   }
+  // };
 
   const handleInstallClick = () => {
     if (deferredPrompt) {
-      // Show the install prompt
-      deferredPrompt.prompt();
-      console.log("first");
-      // Wait for the user to respond to the prompt
+      console.log("Prompting install");
+      deferredPrompt.prompt(); // Show the install prompt
       deferredPrompt.userChoice.then((choiceResult) => {
-        // Reset the deferred prompt so it can be used again
-        setDeferredPrompt(null);
+        if (choiceResult.outcome === "accepted") {
+          console.log("User accepted the install prompt");
+        } else {
+          console.log("User dismissed the install prompt");
+        }
+        setDeferredPrompt(null); // Reset the deferred prompt
       });
+    } else {
+      console.log("No deferred prompt available");
     }
   };
 
@@ -91,7 +134,7 @@ const App = () => {
         Install
       </Button> */}
 
-      <Topbar loggedIn={user} />
+      <Topbar loggedIn={user} handleInstallClick={handleInstallClick} />
 
       {/* {loggedIn && (
           <Button

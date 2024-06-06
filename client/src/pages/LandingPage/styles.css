@@ -1,96 +1,63 @@
 .landing-page {
-  /* background-color:#D6F1FF ; */
   background-color: #f6f7f9;
-  display: grid;
-  justify-items: center;
-  align-items: center;
-  margin-left: 50px;
-  margin-right: 50px;
-  border-radius: 10px;
-  height: 100vh;
-  /*max-width: auto;
-    margin: 0 auto;
-    padding: 2rem;*/
-}
-
-nav ul {
   display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
-nav li {
-  margin-right: 1rem;
-  font-size: 1.2rem;
-}
-
-.logo-container {
-  display: grid;
-  grid-template-columns: 1fr;
-
-  /* display: flex;
-    align-items: center;*/
-}
-
-.logo-container img {
-  height: 4rem;
-  margin-right: 1rem;
-}
-
-h1 {
-  font-size: 2rem;
-  margin: 0;
-}
-
-/* main {
-  margin-top: 4rem;
-  text-align: center;
-} */
-
-h2 {
-  color: #2e3f4d;
-  font-family: Georgia, serif;
-  font-size: 3rem;
-  margin: 0;
-}
-
-p {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-}
-
-button {
-  background-color: #064a74;
-  border: none;
-  border-radius: 10px;
-  color: white;
-  padding: 1rem 2rem;
-  font-size: 1.2rem;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #264db8;
-}
-
-footer {
-  margin-top: 4rem;
-  text-align: center;
-  font-size: 0.8rem;
-}
-body {
-  /* background-color: #b1dffb; */
-
-  background-color: #f6f7f9;
-}
 .landing-content {
-  padding: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 20px;
+  width: 40%;
 }
-.landing-content img {
-  width: 50%;
+
+.landing-page .landing-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.landing-content .landing-logo img.symbol {
+  width: 200px;
+}
+
+.landing-page button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  background-color: #101828;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.landing-page button:hover {
+  background-color: #344054;
+}
+
+/* MEDIA QUERIES FOR RESPONSIVE DESIGN */
+
+@media (max-width: 768px) {
+  .landing-content {
+    width: 100%;
+    height: calc(100vh - 150px);
+  }
+
+  .landing-content .landing-logo img.symbol {
+    width: 30%;
+  }
+
+  .landing-page button {
+    font-size: 14px;
+    font-weight: 600;
+  }
 }

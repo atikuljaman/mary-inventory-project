@@ -19,6 +19,7 @@
 .topbar-container .logo-container {
   display: flex;
   align-items: center;
+  gap: 10px;
 }
 
 .topbar-container .logo-symbol {
@@ -42,8 +43,51 @@
   font-size: 16px;
   font-weight: 600;
   transition: background 0.3s ease-in-out;
+  color: white;
+  border: 0;
 }
 
-.topbar-container button:hover {
+.topbar-container button.install-btn:hover {
   background-color: #344054;
+}
+
+.topbar-right .toggle-btn {
+  display: none;
+}
+
+/* MEDIA QUERIES FOR RESPONSIVE DESIGN */
+
+@media (max-width: 768px) {
+  .topbar-container {
+    height: 80px;
+    width: 100%;
+  }
+
+  .topbar-container button {
+    font-size: 14px;
+    width: auto;
+    height: auto;
+    padding: 10px 20px;
+  }
+
+  .topbar-container .logo-text {
+    display: none;
+  }
+
+  .topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .topbar-right .toggle-btn {
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    color: #101828;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0;
+    display: block;
+  }
 }

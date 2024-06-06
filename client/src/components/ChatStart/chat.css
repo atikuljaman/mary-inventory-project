@@ -21,3 +21,14 @@
   text-decoration: underline;
   font-style: italic;
 }
+
+/* MEDIA QUERIES FOR RESPONSIVE DESIGN */
+@media screen and (max-width: 768px) {
+  .chat_starter_content {
+    padding: 20px;
+  }
+
+  .chat_starter_content h1 {
+    font-size: 16px;
+  }
+}

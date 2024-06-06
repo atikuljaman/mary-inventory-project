@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { IoSearch } from "react-icons/io5";
+import { FaEdit } from "react-icons/fa";
 import "./ItemList.css";
 
 const ItemList = () => {
@@ -11,14 +13,17 @@ const ItemList = () => {
   const [userRole, setUserRole] = useState("");
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
+
   const getItems = async () => {
-    const response = await axios.get("/api/items");
+    const response = await axios.get("http://localhost:5000/api/items");
     document.body.style.overflowX = "hidden";
+
     setCasesItems(
       response.data.data.filter((item) => {
         return item.cases;
       })
     );
+
     setItems(
       response.data.data.filter((item) => {
         return !item.cases;
@@ -26,17 +31,21 @@ const ItemList = () => {
     );
     setLoading(false);
   };
-  const user_id = localStorage.getItem("user_id");
+
+  const user = JSON.parse(localStorage.getItem("User"));
 
   const fetchUserData = async () => {
     try {
-      const response = await axios.get(`/api/users/${user_id}`);
+      const response = await axios.get(
+        `http://localhost:5000/api/users/find/${user?._id}`
+      );
 
-      setUserRole(response.data.data.user_type);
+      setUserRole(response.data.user_type);
     } catch (error) {
       console.error(error);
     }
   };
+
   useEffect(() => {
     getItems();
 
@@ -63,32 +72,36 @@ const ItemList = () => {
     }
   };
 
-  console.log(items);
+  // console.log(items);
 
   if (loading) {
     return <h1>Loading...</h1>;
   }
   return (
-    <div className="mt-5 mt-md-0">
-      <h2 className="yourInfo">Item's Scanned </h2>
-      {userRole === "admin" && (
-        <button className="update_btn" onClick={() => navigate("/editItems")}>
-          Edit Stock
-        </button>
-      )}
+    <div className="">
+      <h2 className="sec-title">Item's Scanned </h2>
 
-      <div className="search_bar">
-        <input
-          value={search}
-          onChange={handleSearch}
-          type="text"
-          placeholder="Search..."
-        />
+      <div className="item-list-header">
+        <div className="search_bar">
+          <IoSearch className="search_icon" />
+          <input
+            value={search}
+            onChange={handleSearch}
+            type="text"
+            placeholder="Search..."
+          />
+        </div>
+
+        {userRole === "admin" && (
+          <button className="edit_btn" onClick={() => navigate("/editItems")}>
+            <FaEdit /> Edit Stock
+          </button>
+        )}
       </div>
 
-      <div>
+      <div className="item-list-container">
         <div className="item-list-table-wrapper">
-          <h2 className="yourInfo">Items without cases</h2>
+          <h2>Items without cases</h2>
 
           <div className="item-list-table-container">
             <table>
@@ -127,7 +140,7 @@ const ItemList = () => {
         </div>
 
         <div className="item-list-table-wrapper">
-          <h2 className="yourInfo">Items with cases</h2>
+          <h2>Items with cases</h2>
 
           <div className="item-list-table-container item-list-table-container-2">
             <table>

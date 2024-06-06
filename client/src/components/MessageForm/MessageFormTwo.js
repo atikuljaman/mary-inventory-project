@@ -135,7 +135,7 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
 import { Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import io from "socket.io-client";
+// import io from "socket.io-client";
 import moment from "moment";
 import axios from "axios";
 import notificationSound from "./../../assets/notification.mp3";
@@ -145,9 +145,11 @@ import InputEmoji from "react-input-emoji";
 import { AuthContext } from "../../context/authContext";
 import { ChatContext } from "../../context/chatContext";
 import { useFetchRecipientUser } from "../../hooks/useFetchRecipientUser";
+import selectMessageImg from "../../assets/select-message-img.svg";
+import MoonLoader from "react-spinners/MoonLoader";
 import "./MessageFormTwo.css";
 
-const socket = io("/");
+// const socket = io("/");
 
 const MessageFormTwo = ({ isAdmin }) => {
   const { user } = useContext(AuthContext);
@@ -169,7 +171,12 @@ const MessageFormTwo = ({ isAdmin }) => {
   if (!recipientUser) {
     return (
       <div className="message-not-selected">
-        <p>Select a user to start messaging</p>
+        <img
+          src={selectMessageImg}
+          alt="Select message"
+          className="img-fluid"
+        />
+        <p>Select a user to start messaging.</p>
       </div>
     );
   }
@@ -177,7 +184,8 @@ const MessageFormTwo = ({ isAdmin }) => {
   if (isLoading) {
     return (
       <div className="message-not-selected">
-        <p>Loading...</p>
+        {/* <p>Loading...</p> */}
+        <MoonLoader color="#101828" />
       </div>
     );
   }
@@ -201,11 +209,11 @@ const MessageFormTwo = ({ isAdmin }) => {
           </div>
         </div>
 
-        <div className="message-form-top-options">
+        {/* <div className="message-form-top-options">
           <button>
             <IoCall className="icon" /> Call
           </button>
-        </div>
+        </div> */}
       </div>
 
       {/* <audio src={notificationSound} ref={notificationRef}></audio> */}
@@ -229,9 +237,9 @@ const MessageFormTwo = ({ isAdmin }) => {
         </div>
 
         <div className="message-form">
-          <div className="attachment">
+          {/* <div className="attachment">
             <IoAttachSharp className="icon" />
-          </div>
+          </div> */}
 
           <InputEmoji
             value={textMessage}
@@ -252,7 +260,7 @@ const MessageFormTwo = ({ isAdmin }) => {
               )
             }
           >
-            <FaPaperPlane className="icon" /> Send
+            <FaPaperPlane className="icon" /> <span>Send</span>
           </button>
         </div>
       </div>

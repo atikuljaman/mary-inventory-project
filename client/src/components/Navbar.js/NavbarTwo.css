@@ -28,6 +28,7 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .navigation-container .avatar-details {
@@ -91,6 +92,115 @@
   background-color: #344054;
 }
 
-.active-link {
+.active {
   background-color: #344054 !important;
+}
+
+.navigation-btn-wrapper .toggle-btn {
+  display: none;
+}
+
+/* MEDIA QUERIES FOR RESPONSIVE DESIGN */
+@media screen and (max-width: 768px) {
+  .navigation-container {
+    width: 80%;
+    min-width: 80%;
+    padding: 15px;
+    left: -100%;
+    transition: left 0.3s ease-in-out;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+  }
+
+  .navigation-container.active {
+    left: -0%;
+  }
+
+  .navigation-container .navigation-top {
+    margin-bottom: 40px;
+  }
+
+  .navigation-container .avatar-container {
+    gap: 10px;
+  }
+
+  .navigation-container .avatar img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .navigation-container .avatar-details {
+    color: white;
+  }
+
+  .navigation-container .avatar-details h3 {
+    font-size: 16px;
+  }
+
+  .navigation-container .avatar-details p {
+    font-size: 12px;
+  }
+
+  .navigation-btn-wrapper {
+    display: flex;
+    gap: 10px;
+  }
+
+  .navigation-btn-wrapper .toggle-btn {
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    color: #101828;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0;
+    display: block;
+    color: white;
+    height: max-content;
+    margin-top: -4.5px;
+    display: block;
+  }
+
+  .navigation-btn-wrapper .toggle-btn:hover {
+    background-color: transparent;
+  }
+
+  .navigation-container a {
+    font-size: 14px;
+  }
+
+  .navigation-container .icon {
+    font-size: 18px;
+    color: #d0d5dd;
+  }
+
+  .navigation-container .icon.chat-icon,
+  .navigation-container .icon.report-icon {
+    font-size: 20px;
+  }
+
+  .navigation-container li button {
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    color: white;
+    padding: 12px;
+    border-radius: 12px;
+    transition: background 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    width: 100%;
+    font-weight: 500;
+  }
+
+  .navigation-container a:hover,
+  .navigation-container button:hover {
+    background-color: #344054;
+  }
+
+  .active-link {
+    background-color: #344054 !important;
+  }
 }

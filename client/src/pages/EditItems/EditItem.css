@@ -1,56 +1,161 @@
+.edit-items-heading {
+  font-size: 30px;
+  color: #263440;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.item-icon-container {
+  width: 70px;
+  height: 70px;
+  background-color: #101828;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  color: white;
+  font-size: 30px;
+}
+
+.edit-items-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
 .item_card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: column;
-    margin-top: 30px;
-    background: lightblue;
-    width: 400px;
-    padding: 30px;
-    border-radius: 10px;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  flex-direction: column;
+  background: white;
+  gap: 10px;
+  padding: 30px;
+  border-radius: 10px;
+  border: 1px solid #e6e6e6;
 }
 
-.item_card>.item_head {
-    flex: 1;
+.item_card h3 {
+  color: #101828;
+  font-weight: 600;
+  font-size: 22px;
+  margin-bottom: 10px;
 }
 
-/* .form_update {
-    border-radius: 10px;
-    width: 40%;
-    height: 350px;
-    position: fixed;
-    top: 50px;
-    right: 100px;
-    background-color: gray;
-    padding: 50px;
+.item_card h6 {
+  color: #667085;
+  font-weight: 500;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
 
-} */
+.item_card > .item_head {
+  flex: 1;
+}
 
 .update_btn {
-    padding: 5px;
-    border: none;
-    border-radius: 5px;
-    background-color: red;
-    color: white;
-    cursor: pointer;
-    margin-top: 30px;
-    width: 300px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #101828;
+  color: white;
+  cursor: pointer;
+  width: 100px;
+  height: 30px;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.update_btn .icon {
+  font-size: 12px;
 }
 
 .item_main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
 }
 
-.form_update{
-    background: gray;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    top: 10px;
+.form_update {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
+.modal-title {
+  color: #101828;
+  font-size: 22px;
+}
+
+.form_update .input-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.form_update label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #101828;
+}
+
+.form_update input {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  background-color: white;
+  width: 100%;
+  max-width: 100%;
+  font-size: 14px;
+}
+
+.form_update input::placeholder {
+  font-size: 13px;
+}
+
+.form_update .btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.form_update button {
+  height: 40px;
+  border: 0;
+  border-radius: 5px;
+  outline: none;
+  background-color: #101828;
+  width: 100%;
+  max-width: 100%;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+}
+
+.form_update button:last-child {
+  background-color: crimson;
+}
+
+/* MEDIA QUERIES FOR RESPONSIVE DESIGN */
+@media screen and (max-width: 768px) {
+  .edit-items-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .item_card h3 {
+    font-size: 20px;
+  }
+}

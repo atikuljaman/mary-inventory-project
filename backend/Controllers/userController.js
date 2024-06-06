@@ -11,8 +11,16 @@ const createToken = (_id) => {
 
 const registerUser = async (req, res) => {
   try {
-    const { firstName, lastName, username, email, password, user_type, image } =
-      req.body;
+    const {
+      firstName,
+      lastName,
+      username,
+      email,
+      password,
+      confirmPassword,
+      user_type,
+      image,
+    } = req.body;
 
     let user = await userModel.findOne({ email });
 
@@ -24,10 +32,14 @@ const registerUser = async (req, res) => {
       !username ||
       !email ||
       !password ||
+      !confirmPassword ||
       !user_type ||
       !image
     )
       return res.status(400).json("Please enter all fields");
+
+    if (password !== confirmPassword)
+      return res.status(400).json("Passwords do not match");
 
     if (!validator.isEmail(email)) return res.status(400).json("Invalid email");
 
@@ -120,4 +132,34 @@ const getUsers = async (req, res) => {
   }
 };
 
-module.exports = { registerUser, loginUser, findUser, getUsers };
+const updateAdminImage = async (req, res) => {
+  try {
+    const { image } = req.body;
+
+    // Find the admin user and update the image
+    const adminUser = await userModel.findOneAndUpdate(
+      { user_type: "admin" },
+      { image },
+      { new: true } // Return the updated document
+    );
+
+    if (!adminUser) {
+      return res.status(404).json({ message: "Admin user not found" });
+    }
+
+    res
+      .status(200)
+      .json({ message: "Admin's image updated successfully", user: adminUser });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+module.exports = {
+  registerUser,
+  loginUser,
+  findUser,
+  getUsers,
+  updateAdminImage,
+};

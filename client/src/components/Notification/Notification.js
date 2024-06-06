@@ -1,10 +1,10 @@
-import { IoNotifications } from "react-icons/io5";
-import "./Notification.css";
+import { IoNotifications, IoNotificationsOffSharp } from "react-icons/io5";
 import { ChatContext } from "../../context/chatContext";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/authContext";
 import { unreadNotificationFunc } from "../../utils/unreadNotification";
 import moment from "moment";
+import "./Notification.css";
 
 const Notification = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,9 +30,6 @@ const Notification = () => {
     };
   });
 
-  // console.log("unreadNotification", unreadNotification);
-  // console.log("modifiedNotifications", modifiedNotifications);
-
   return (
     <div className="notification-wrapper">
       <button className="notification-btn" onClick={() => setIsOpen(!isOpen)}>
@@ -51,13 +48,16 @@ const Notification = () => {
               className="mark-all-as-read-btn"
               onClick={() => markAllNotificationsAsRead(notifications)}
             >
-              Mark all as read
+              Mark all
             </div>
           </div>
 
           <div className="notification-body">
             {modifiedNotifications?.length < 1 ? (
-              <p className="no-notification">No notification found</p>
+              <p className="no-notification">
+                <IoNotificationsOffSharp className="no-notification-icon" />
+                No notification found
+              </p>
             ) : (
               modifiedNotifications?.map((notification, index) => (
                 <div

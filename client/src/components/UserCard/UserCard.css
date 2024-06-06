@@ -1,18 +1,6 @@
 .user-card {
-  /* display: flex;
-  flex-direction: column;
-  margin-top: 30px;
-  justify-content: space-around;
-  align-items: center;
-  padding: 2rem; */
-  /* margin: 20px 50px; */
-  /* border-radius: 16px;
-  background-color: #a9dbfb;
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease-in-out; */
-
   background-color: white;
-  width: fit-content;
+  width: 100%;
   padding: 40px;
   border-radius: 16px;
   display: flex;
@@ -22,30 +10,15 @@
   border: 1px solid #e6e6e6;
 }
 
-/* .user-card:hover {
-  transform: translateY(-5px);
-} */
-
-/* .user_card {
-  display: flex;
-  margin-top: 30px;
-  width: 80%;
-  justify-content: space-around;
-  align-items: center;
-  padding: 2rem;
-  margin: 20px 50px;
-  border-radius: 16px;
-  background-color: #fff;
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
-  transition: transform 0.2s ease-in-out;
-} */
-
 .user-card-image {
   width: 130px;
   height: 130px;
   overflow: hidden;
   border-radius: 50%;
-  /* margin-right: 2rem; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e6e6e6;
 }
 
 .user-card-image img {
@@ -60,7 +33,6 @@
 
 .user-card-details h3 {
   font-size: 1.5rem;
-  /* margin-bottom: 0.5rem; */
   color: #263440;
   font-weight: 600;
   margin-bottom: 8px;
@@ -68,8 +40,6 @@
 
 .user-card-details p {
   font-size: 15px;
-  /* margin-bottom: 0.5rem; */
-  /* color: #263440; */
   font-weight: 400;
   color: #344054;
   margin-bottom: 2px;
@@ -83,6 +53,12 @@
   color: #101828;
 }
 
+.img-upload-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .img-upload {
   margin: 10px;
 }
@@ -90,10 +66,96 @@
   display: none;
 }
 
-.custom-file-label {
+/* .custom-file-label {
   background-color: blue;
   color: white;
   padding: 10px 15px;
   border-radius: 5px;
   cursor: pointer;
+} */
+
+.custom-file-label,
+.confirm-button {
+  background-color: #101828;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  border: 0;
+}
+
+.confirm-button {
+  background-color: green;
+}
+
+/* MEDIA QUERIES FOR RESPONSIVE DESIGN */
+@media screen and (max-width: 768px) {
+  .user-card {
+    padding: 20px;
+    flex-direction: column;
+  }
+
+  .user-card-image {
+    width: 130px;
+    height: 130px;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+
+  .user-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .user-card-details {
+    text-align: left;
+  }
+
+  .user-card-details h3 {
+    font-size: 1.5rem;
+    color: #263440;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .user-card-details p {
+    font-size: 15px;
+    font-weight: 400;
+    color: #344054;
+    margin-bottom: 2px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .user-card-details p .icon {
+    font-size: 17px;
+    color: #101828;
+  }
+
+  .img-upload {
+    margin: 10px;
+  }
+  .custom-file-input {
+    display: none;
+  }
+
+  .custom-file-label,
+  .confirm-button {
+    background-color: #101828;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    border: 0;
+  }
+
+  .confirm-button {
+    background-color: green;
+  }
 }

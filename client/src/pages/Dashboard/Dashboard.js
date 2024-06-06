@@ -6,30 +6,35 @@ import moment from "moment";
 
 const Dashboard = () => {
   const [user, setUser] = useState(null);
-  const user_id = localStorage.getItem("user_id");
+  const localStorageUser = JSON.parse(localStorage.getItem("User"));
+  // console.log("User ID:", user_id);
   const getUser = async (id) => {
-    const response = await axios.get(`/api/users/${id}`);
-    setUser(response.data.data);
+    const response = await axios.get(
+      `http://localhost:5000/api/users/find/${id}`
+    );
+    // console.log("response", response.data._id);
+    setUser(response.data);
   };
   //  logout if last login is more than 2 hours ago
   const logout = async () => {
     const lastLogin = moment(user?.last_login);
     const now = moment();
     const diff = now.diff(lastLogin, "minutes");
-    console.log(diff);
     if (diff > 119) {
-      localStorage.clear()
-      localStorage.removeItem("user_id");
+      localStorage.clear();
+      localStorage.removeItem("User");
       window.location.replace("/");
     }
   };
 
   useEffect(() => {
-    getUser(user_id);
+    getUser(localStorageUser?._id);
   }, []);
+
   useEffect(() => {
     logout();
   }, [user]);
+
   if (!user) {
     return (
       <div className="loader">
@@ -41,7 +46,7 @@ const Dashboard = () => {
   }
   return (
     <div className="dashboard mt-5 mt-md-0">
-      <h1 className="yourInfo">Your Information</h1>
+      <h1 className="sec-title">Your Information</h1>
       <UserCard
         getUser={getUser}
         image={user.image}

@@ -1,88 +1,88 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FaRegUser } from "react-icons/fa";
 import { BiQrScan, BiChat, BiLogOut } from "react-icons/bi";
+import { RiMenu2Fill } from "react-icons/ri";
 import { TbReport } from "react-icons/tb";
 import "./NavbarTwo.css";
 import { AuthContext } from "../../context/authContext";
 import Notification from "../Notification/Notification";
 
 const NavbarTwo = ({ setLoggedIn, openMenu, setOpenMenu }) => {
-  // const [userRole, setUserRole] = useState("");
-  // const [image, setImage] = useState("");
-  // const [name, setName] = useState("");
-  const navigate = useNavigate();
-  // const user_id = localStorage.getItem("user_id");
-
-  const { user, logoutUser } = useContext(AuthContext);
-
-  // useEffect(() => {
-  //   // Fetch user data and set the user role and profile pic
-  //   const fetchUserData = async () => {
-  //     try {
-  //       const response = await axios.get(`/api/users/${user_id}`);
-  //       setUserRole(response.data.data.user_type);
-  //       setImage(response.data.data.image);
-  //       setName(
-  //         response.data.data.firstName + " " + response.data.data.lastName
-  //       );
-  //       console.log(response.data);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
-  //   fetchUserData();
-  // }, [userRole, user_id]);
-
-  // const handleLogout = () => {
-  //   // Clear local storage and navigate to the login page
-  //   localStorage.clear();
-  //   setLoggedIn(null);
-  //   navigate("/");
-  // };
+  const { user, logoutUser, isSideBarOpen, toggleSideBar, adminUpdatedImage } =
+    useContext(AuthContext);
 
   return (
-    <div className="navigation-container">
+    <div className={`navigation-container ${isSideBarOpen ? "active" : ""} `}>
       <div className="navigation-top">
         <div className="avatar-container">
           <div className="avatar">
-            <img src={user?.image} alt="avatar" className="img-fluid" />
+            <img
+              src={adminUpdatedImage || user?.image}
+              alt="avatar"
+              className="img-fluid"
+            />
           </div>
           <div className="avatar-details">
             <h3>{user?.firstName + " " + user?.lastName}</h3>
             {/* <p>{userRole === "admin" ? "Employer" : "Employee"}</p> */}
-            <p>{user?.user_type}</p>
+            <p>{user?.user_type === "admin" ? "Employer" : "Employee"}</p>
           </div>
         </div>
 
-        <Notification />
+        <div className="navigation-btn-wrapper">
+          <button onClick={toggleSideBar} className="toggle-btn">
+            <RiMenu2Fill />
+          </button>
+          <Notification />
+        </div>
       </div>
       <div className="navigation-bottom">
         <ul>
           <li>
-            <Link to="/dashboard">
+            <NavLink
+              to="/dashboard"
+              className={({ isActive, isPending }) => {
+                return isActive ? "active" : isPending ? "pending" : "";
+              }}
+            >
               <FaRegUser className="icon" />
               Your Profile
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/scan">
+            <NavLink
+              to="/scan"
+              className={({ isActive, isPending }) => {
+                return isActive ? "active" : isPending ? "pending" : "";
+              }}
+            >
               <BiQrScan className="icon" />
               Scan Items
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/itemList">
+            <NavLink
+              to="/itemList"
+              className={({ isActive, isPending }) => {
+                return isActive ? "active" : isPending ? "pending" : "";
+              }}
+            >
               <TbReport className="icon report-icon" />
               Scanned Report
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/chat" className="active">
+            <NavLink
+              to="/chat"
+              className={({ isActive, isPending }) => {
+                return isActive ? "active" : isPending ? "pending" : "";
+              }}
+            >
               <BiChat className="icon chat-icon" />
               Chat
-            </Link>
+            </NavLink>
           </li>
           <li>
             <button onClick={logoutUser}>

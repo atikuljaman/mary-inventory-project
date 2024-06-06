@@ -26,19 +26,10 @@
   /* text-align: center; */
   /* margin-top: 0px; */
   color: #101828;
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
   text-transform: uppercase;
 }
-@media only screen and (max-width: 800px) {
-  .loader {
-    /* Styles for smaller screens */
-    top: 40%;
-  }
-}
 
-@media only screen and (max-width: 480px) {
-  .loader {
-    /* Styles for even smaller screens */
-    top: 30%;
-  }
+/* MEDIA QUERIES FOR RESPONSIVE DESIGN */
+@media screen and (max-width: 768px) {
 }
