@@ -64,11 +64,18 @@
 .navigation-container .icon {
   font-size: 22px;
   color: #d0d5dd;
+  width: 30px;
+  /* background-color: red; */
 }
 
 .navigation-container .icon.chat-icon,
-.navigation-container .icon.report-icon {
+.navigation-container .icon.report-icon,
+.navigation-container .employees-icon {
   font-size: 24px;
+}
+
+.navigation-container .employees-icon {
+  font-size: 26px;
 }
 
 .navigation-container li button {

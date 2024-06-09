@@ -50,7 +50,7 @@ const App = () => {
     const handleBeforeInstallPrompt = (event) => {
       console.log("beforeinstallprompt event fired");
       event.preventDefault(); // Prevent the default prompt from showing
-      getAdmin();
+      // getAdmin();
       setDeferredPrompt(event); // Store the deferred prompt for later use
     };
 
@@ -182,6 +182,7 @@ const App = () => {
             <Route
               path="/employee"
               element={user ? <Profile /> : <Navigate replace to={"/login"} />}
+              // element={<Profile />}
             />
             <Route
               path="/scan"

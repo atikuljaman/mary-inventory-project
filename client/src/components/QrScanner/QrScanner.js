@@ -123,7 +123,7 @@ import Swal from "sweetalert2";
 
 const QrScanner = () => {
   const delay = 500;
-  const user = localStorage.getItem("User");
+  const user = JSON.parse(localStorage.getItem("User"));
   const navigate = useNavigate();
 
   const [shown, setShown] = useState(false);
@@ -151,6 +151,7 @@ const QrScanner = () => {
         setShown(false);
 
         let item_details;
+
         try {
           item_details = JSON.parse(data.data);
         } catch (parseError) {

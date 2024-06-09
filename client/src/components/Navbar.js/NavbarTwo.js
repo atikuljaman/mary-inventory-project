@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FaRegUser } from "react-icons/fa";
+import { HiOutlineUsers } from "react-icons/hi2";
 import { BiQrScan, BiChat, BiLogOut } from "react-icons/bi";
 import { RiMenu2Fill } from "react-icons/ri";
 import { TbReport } from "react-icons/tb";
@@ -51,6 +52,20 @@ const NavbarTwo = ({ setLoggedIn, openMenu, setOpenMenu }) => {
               Your Profile
             </NavLink>
           </li>
+
+          {user?.user_type === "admin" && (
+            <li>
+              <NavLink
+                to="/employee"
+                className={({ isActive, isPending }) => {
+                  return isActive ? "active" : isPending ? "pending" : "";
+                }}
+              >
+                <HiOutlineUsers className="icon employees-icon" />
+                Employees Record
+              </NavLink>
+            </li>
+          )}
           <li>
             <NavLink
               to="/scan"

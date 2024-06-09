@@ -30,28 +30,75 @@ exports.getAllItems = async (req, res) => {
 
 // Controller to handle the selling of items
 exports.sellItem = async (req, res) => {
+  // const { name, user_id, type } = req.body;
+  // try {
+  //   const { firstName, lastName } = await User.findOneAndUpdate(
+  //     { _id: user_id },
+  //     { $push: { scannedItems: name, lastScan: Date.now() } }
+  //   );
+
+  //   let update = { firstName, lastName };
+
+  //   // Update logic based on the type of sale (case, box, or item)
+  //   if (type == "case") {
+  //     update = { $inc: { cases: -1, items_left: -100, boxes: -10 }, ...update };
+  //   } else if (type == "box") {
+  //     update = { $inc: { boxes: -1, items_left: -10 }, ...update };
+  //   } else {
+  //     update = { $inc: { items_left: -1 }, ...update };
+  //   }
+
+  //   const item = await Item.findOneAndUpdate({ name }, update);
+  //   res.status(201).json({ status: "Successful", data: item });
+  // } catch (error) {
+  //   res.status(400).json({ status: "Failed", message: error });
+  // }
+
   const { name, user_id, type } = req.body;
+
   try {
-    const { firstName, lastName } = await User.findOneAndUpdate(
+    // Find and update the user
+    const user = await User.findOneAndUpdate(
       { _id: user_id },
-      { $push: { scannedItems: name, lastScan: Date.now() } }
+      { $push: { scannedItems: name, lastScan: Date.now() } },
+      { new: true } // This returns the updated document
     );
 
-    let update = { firstName, lastName };
-
-    // Update logic based on the type of sale (case, box, or item)
-    if (type == "case") {
-      update = { $inc: { cases: -1, items_left: -100, boxes: -10 }, ...update };
-    } else if (type == "box") {
-      update = { $inc: { boxes: -1, items_left: -10 }, ...update };
-    } else {
-      update = { $inc: { items_left: -1 }, ...update };
+    // Check if user is found
+    if (!user) {
+      return res
+        .status(404)
+        .json({ status: "Failed", message: "User not found" });
     }
 
-    const item = await Item.findOneAndUpdate({ name }, update);
+    // Prepare update object based on type
+    let update = { $inc: {} };
+    if (type === "case") {
+      update.$inc = { cases: -1, items_left: -100, boxes: -10 };
+    } else if (type === "box") {
+      update.$inc = { boxes: -1, items_left: -10 };
+    } else {
+      update.$inc = { items_left: -1 };
+    }
+
+    // Add user's firstName and lastName to update
+    update.firstName = user.firstName;
+    update.lastName = user.lastName;
+
+    // Find and update the item
+    const item = await Item.findOneAndUpdate({ name }, update, { new: true });
+
+    // Check if item is found
+    if (!item) {
+      return res
+        .status(404)
+        .json({ status: "Failed", message: "Item not found" });
+    }
+
     res.status(201).json({ status: "Successful", data: item });
   } catch (error) {
-    res.status(400).json({ status: "Failed", message: error });
+    console.error(error);
+    res.status(400).json({ status: "Failed", message: error.message });
   }
 };
 

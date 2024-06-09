@@ -9,7 +9,11 @@ const Topbar = ({ loggedIn, handleInstallClick }) => {
   const { toggleSideBar } = useContext(AuthContext);
 
   return (
-    <div className={loggedIn ? "topbar-container" : "topbar-container active"}>
+    <div
+      className={
+        loggedIn ? "topbar-container" : "topbar-container topbar-active"
+      }
+    >
       <div className="logo-container">
         <img src={logo} alt="Logo" className="img-fluid logo-symbol" />
         <img src={logo_text} alt="Logo text" className="img-fluid logo-text" />
