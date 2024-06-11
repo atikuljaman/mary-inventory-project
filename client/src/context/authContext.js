@@ -111,6 +111,7 @@ export const AuthContextProvider = ({ children }) => {
         error,
         isLoading,
         toggleSideBar,
+        setIsSideBarOpen,
         isSideBarOpen,
         updateAdminImage,
         adminUpdatedImage,

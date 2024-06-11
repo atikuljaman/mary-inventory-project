@@ -99,7 +99,7 @@
   background-color: #344054;
 }
 
-.active {
+.navigation-container a.active {
   background-color: #344054 !important;
 }
 

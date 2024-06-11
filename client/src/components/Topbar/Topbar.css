@@ -9,6 +9,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
   border-bottom: 1px solid #e6e6e6;
 }
 
@@ -70,8 +71,22 @@
     padding: 10px 20px;
   }
 
+  .topbar-container .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    flex-direction: column;
+  }
+
+  .topbar-container .logo-symbol {
+    width: 40px;
+    height: max-content;
+  }
+
   .topbar-container .logo-text {
-    display: none;
+    /* display: none; */
+    width: 150px;
   }
 
   .topbar-right {

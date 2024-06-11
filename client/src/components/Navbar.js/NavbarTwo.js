@@ -11,8 +11,14 @@ import { AuthContext } from "../../context/authContext";
 import Notification from "../Notification/Notification";
 
 const NavbarTwo = ({ setLoggedIn, openMenu, setOpenMenu }) => {
-  const { user, logoutUser, isSideBarOpen, toggleSideBar, adminUpdatedImage } =
-    useContext(AuthContext);
+  const {
+    user,
+    logoutUser,
+    isSideBarOpen,
+    setIsSideBarOpen,
+    toggleSideBar,
+    adminUpdatedImage,
+  } = useContext(AuthContext);
 
   return (
     <div className={`navigation-container ${isSideBarOpen ? "active" : ""} `}>
@@ -47,6 +53,7 @@ const NavbarTwo = ({ setLoggedIn, openMenu, setOpenMenu }) => {
               className={({ isActive, isPending }) => {
                 return isActive ? "active" : isPending ? "pending" : "";
               }}
+              onClick={toggleSideBar}
             >
               <FaRegUser className="icon" />
               Your Profile
@@ -60,6 +67,7 @@ const NavbarTwo = ({ setLoggedIn, openMenu, setOpenMenu }) => {
                 className={({ isActive, isPending }) => {
                   return isActive ? "active" : isPending ? "pending" : "";
                 }}
+                onClick={toggleSideBar}
               >
                 <HiOutlineUsers className="icon employees-icon" />
                 Employees Record
@@ -72,6 +80,7 @@ const NavbarTwo = ({ setLoggedIn, openMenu, setOpenMenu }) => {
               className={({ isActive, isPending }) => {
                 return isActive ? "active" : isPending ? "pending" : "";
               }}
+              onClick={toggleSideBar}
             >
               <BiQrScan className="icon" />
               Scan Items
@@ -83,6 +92,7 @@ const NavbarTwo = ({ setLoggedIn, openMenu, setOpenMenu }) => {
               className={({ isActive, isPending }) => {
                 return isActive ? "active" : isPending ? "pending" : "";
               }}
+              onClick={toggleSideBar}
             >
               <TbReport className="icon report-icon" />
               Scanned Report
@@ -94,6 +104,7 @@ const NavbarTwo = ({ setLoggedIn, openMenu, setOpenMenu }) => {
               className={({ isActive, isPending }) => {
                 return isActive ? "active" : isPending ? "pending" : "";
               }}
+              onClick={toggleSideBar}
             >
               <BiChat className="icon chat-icon" />
               Chat

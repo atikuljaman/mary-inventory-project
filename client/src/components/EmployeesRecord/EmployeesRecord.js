@@ -6,6 +6,8 @@ import axios from "axios";
 import EmployeeTable from "./EmployeeTable";
 import { Button, Table } from "react-bootstrap";
 
+import Swal from "sweetalert2";
+
 const EmployeesRecord = () => {
   const [users, setUsers] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -50,13 +52,24 @@ const EmployeesRecord = () => {
     try {
       setLoading(true);
       await axios.get("http://localhost:5000/api/items/clear");
-      alert("Data Successfully Cleared");
+      // alert("Data Successfully Cleared");
+      Swal.fire({
+        title: "Done",
+        text: "Data Successfully Cleared",
+        icon: "success",
+      });
       setLoading(false);
       getAllUsers();
     } catch (error) {
-      alert(error);
+      // alert(error);
+      Swal.fire({
+        title: "Oops!",
+        text: `${error}`,
+        icon: "error",
+      });
     }
   };
+
   return (
     <div className="">
       <h1 className="sec-title">Employees Record</h1>
@@ -93,14 +106,14 @@ const EmployeesRecord = () => {
                 <td>Loading...</td>
               </tr>
             ) : (
-              users.map((item, index) => (
+              users?.map((item, index) => (
                 <EmployeeTable
-                  lastScan={item.lastScan}
+                  lastScan={item?.lastScan}
                   index={index + 1}
-                  name={item.firstName + " " + item.lastName}
-                  key={item._id}
-                  scannedItems={item.scannedItems}
-                  id={item._id}
+                  name={item?.firstName + " " + item.lastName}
+                  key={item?._id}
+                  scannedItems={item?.scannedItems}
+                  id={item?._id}
                 />
               ))
             )}

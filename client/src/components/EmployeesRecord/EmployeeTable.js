@@ -12,15 +12,17 @@ const EmployeeTable = ({ id, scannedItems, name, index, lastScan }) => {
       <td>{scannedItems.length === 0 ? "nil" : scannedItems.length}</td>
       <td>
         {scannedItems.map((item, index) => (
-          <tr key={index}>
-            <td key={index}>{item}</td>
+          <tr key={index} className="border-0  bg-transparent">
+            <td key={index} className="border-0 border-bottom">
+              {item}
+            </td>
           </tr>
         ))}
       </td>
       <td>
         {lastScan.map((item, index) => (
-          <tr key={index}>
-            <td key={index}>
+          <tr key={index} className="border-0 bg-transparent">
+            <td key={index} className="border-0 border-bottom">
               {dateConverter(item)} / {moment(item).fromNow()}
             </td>
           </tr>
