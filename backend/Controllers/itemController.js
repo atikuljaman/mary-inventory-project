@@ -165,7 +165,8 @@ exports.clearItems = async (req, res) => {
 
     const fileMetadata = {
       name: "users.xlsx",
-      parents: [process.env.GOOGLE_DRIVE_FOLDER],
+      // parents: [process.env.GOOGLE_DRIVE_FOLDER],
+      parents: ["1CpwdtWcEyNjMpg7kF_40KzCaSyc4porq"],
     };
     const media = {
       mimeType:

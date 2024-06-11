@@ -232,10 +232,11 @@ const Message = ({ chats, isAdmin }) => {
               </div>
             )}
 
-            {potentialChats?.map((item) => (
+            {potentialChats?.map((item, index) => (
               <div
                 className="conversation-item"
                 onClick={() => createChat(user?._id, item?._id)}
+                key={index}
               >
                 <div
                   className="conversation-item-image"
@@ -283,12 +284,12 @@ const Message = ({ chats, isAdmin }) => {
 
             {onlineUsersExcludingCurrentUser?.length !== 0 && (
               <ul>
-                {onlineUsersExcludingCurrentUser?.map((onlineUser) => {
+                {onlineUsersExcludingCurrentUser?.map((onlineUser, index) => {
                   const userDetails = getOnlineUserDetails(onlineUser.userId);
 
                   return (
                     <li
-                      key={onlineUser.userId}
+                      key={index}
                       onClick={() => handleUserClick(onlineUser.userId)}
                     >
                       <div
@@ -342,10 +343,11 @@ const Message = ({ chats, isAdmin }) => {
               </div>
             )}
 
-            {potentialChats?.map((item) => (
+            {potentialChats?.map((item, index) => (
               <div
                 className="conversation-item"
                 onClick={() => createChat(user?._id, item?._id)}
+                key={index}
               >
                 <div
                   className="conversation-item-image"

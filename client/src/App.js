@@ -48,7 +48,7 @@ const App = () => {
 
   useEffect(() => {
     const handleBeforeInstallPrompt = (event) => {
-      console.log("beforeinstallprompt event fired");
+      // console.log("beforeinstallprompt event fired");
       event.preventDefault(); // Prevent the default prompt from showing
       // getAdmin();
       setDeferredPrompt(event); // Store the deferred prompt for later use
@@ -57,7 +57,7 @@ const App = () => {
     window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
 
     // Check if the event listener is added
-    console.log("Added event listener for beforeinstallprompt");
+    // console.log("Added event listener for beforeinstallprompt");
 
     return () => {
       window.removeEventListener(
@@ -68,7 +68,7 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    console.log("DEFERRED PROMPT", deferredPrompt);
+    // console.log("DEFERRED PROMPT", deferredPrompt);
   }, [deferredPrompt]);
 
   // const handleInstallClick = () => {
@@ -165,7 +165,7 @@ const App = () => {
           />
         )}
 
-        <main className={!user && "active-main"}>
+        <main className={!user ? "active-main" : ""}>
           <Routes>
             <Route
               path="/"

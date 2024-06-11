@@ -77,6 +77,7 @@ const ItemList = () => {
   if (loading) {
     return <h1>Loading...</h1>;
   }
+
   return (
     <div className="">
       <h2 className="sec-title">Item's Scanned </h2>

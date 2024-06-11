@@ -1,8 +1,8 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
-import "./Dashboard.css";
+import axios from "axios";
 import UserCard from "../../components/UserCard/UserCard";
 import moment from "moment";
+import "./Dashboard.css";
 
 const Dashboard = () => {
   const [user, setUser] = useState(null);
